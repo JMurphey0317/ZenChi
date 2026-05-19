@@ -1,0 +1,12 @@
+<template>
+    <lightning-card title="Dependency Tree">
+        <div class="slds-p-around_medium">
+            <lightning-tree-grid
+                key-field="id"
+                columns={columns}
+                data={treeData}
+                hide-checkbox-column
+            ></lightning-tree-grid>
+        </div>
+    </lightning-card>
+</template>

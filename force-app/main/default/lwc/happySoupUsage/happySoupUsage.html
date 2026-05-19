@@ -44,6 +44,12 @@
                     <p>{usageResultMessage}</p>
                     <template lwc:if={hasNodes}>
                         <p class="slds-m-top_small">Returned node count: {nodeCount}</p>
+                        <div class="slds-m-top_medium">
+                            <c-happy-soup-dependency-tree nodes={usageResult.nodes}></c-happy-soup-dependency-tree>
+                        </div>
+                        <div class="slds-m-top_medium">
+                            <c-happy-soup-dependency-table nodes={usageResult.nodes}></c-happy-soup-dependency-table>
+                        </div>
                     </template>
                     <template lwc:else>
                         <c-happy-soup-status-panel
