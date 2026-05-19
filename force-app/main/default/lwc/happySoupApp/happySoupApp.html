@@ -1,0 +1,43 @@
+<template>
+    <lightning-card title="HappySoup Migration (LWC)">
+        <div class="slds-p-horizontal_medium slds-p-top_small">
+            <p class="slds-text-body_small slds-text-color_weak">
+                Phase 1 foundation is active. Start with Usage and continue iteratively.
+            </p>
+        </div>
+
+        <lightning-tabset variant="scoped" active-tab-value={activeTab} class="slds-p-around_medium">
+            <lightning-tab label="Usage" value="usage" onactive={handleTabActive}>
+                <c-happy-soup-usage></c-happy-soup-usage>
+            </lightning-tab>
+            <lightning-tab label="Bulk Usage" value="bulkUsage" onactive={handleTabActive}>
+                <c-happy-soup-feature-placeholder
+                    title="Bulk Usage"
+                    description="Phase 1 placeholder for bulk dependency analysis from multiple metadata selections."
+                    next-step="Next: migrate BulkMetadataSelection and async job polling patterns."
+                ></c-happy-soup-feature-placeholder>
+            </lightning-tab>
+            <lightning-tab label="Boundaries" value="boundaries" onactive={handleTabActive}>
+                <c-happy-soup-feature-placeholder
+                    title="Boundaries"
+                    description="Phase 1 placeholder for metadata boundary exploration and dependency limits."
+                    next-step="Next: scaffold boundaries request DTOs and result rendering container."
+                ></c-happy-soup-feature-placeholder>
+            </lightning-tab>
+            <lightning-tab label="Layout Dictionary" value="layoutDictionary" onactive={handleTabActive}>
+                <c-happy-soup-feature-placeholder
+                    title="Layout Dictionary"
+                    description="Phase 1 placeholder for layout dictionary analysis and export tooling."
+                    next-step="Next: define Apex services for layout metadata discovery and response mapping."
+                ></c-happy-soup-feature-placeholder>
+            </lightning-tab>
+            <lightning-tab label="Workflows" value="workflows" onactive={handleTabActive}>
+                <c-happy-soup-feature-placeholder
+                    title="Workflows"
+                    description="Phase 1 placeholder for workflow dependency surfaces."
+                    next-step="Next: migrate workflows API contract into Apex controller/service methods."
+                ></c-happy-soup-feature-placeholder>
+            </lightning-tab>
+        </lightning-tabset>
+    </lightning-card>
+</template>

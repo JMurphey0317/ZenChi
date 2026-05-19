@@ -1,0 +1,15 @@
+<template>
+    <lightning-card title={title}>
+        <div class="slds-p-around_medium">
+            <template lwc:if={isLoading}>
+                <lightning-spinner alternative-text={title} size="small"></lightning-spinner>
+            </template>
+            <template lwc:elseif={isError}>
+                <p class="slds-text-color_error">{message}</p>
+            </template>
+            <template lwc:else>
+                <p>{message}</p>
+            </template>
+        </div>
+    </lightning-card>
+</template>

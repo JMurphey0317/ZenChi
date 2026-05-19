@@ -1,0 +1,67 @@
+<template>
+    <div class="slds-p-around_medium">
+        <lightning-layout multiple-rows="true">
+            <lightning-layout-item size="12" medium-device-size="4" class="slds-p-right_small slds-p-bottom_small">
+                <lightning-combobox
+                    name="metadataType"
+                    label="Metadata Type"
+                    value={selectedMetadataType}
+                    options={metadataTypeOptions}
+                    onchange={handleMetadataTypeChange}
+                ></lightning-combobox>
+            </lightning-layout-item>
+            <lightning-layout-item size="12" medium-device-size="6" class="slds-p-right_small slds-p-bottom_small">
+                <lightning-input
+                    type="text"
+                    label="Metadata Name"
+                    value={metadataName}
+                    placeholder="Example: AccountController"
+                    onchange={handleMetadataNameChange}
+                ></lightning-input>
+            </lightning-layout-item>
+            <lightning-layout-item size="12" medium-device-size="2" class="slds-p-bottom_small action-row">
+                <lightning-button
+                    variant="brand"
+                    label="Fetch Usage"
+                    title="Fetch Usage"
+                    onclick={handleFetchUsage}
+                    disabled={isFetchDisabled}
+                ></lightning-button>
+            </lightning-layout-item>
+        </lightning-layout>
+
+        <template lwc:if={isLoading}>
+            <c-happy-soup-status-panel state="loading" title="Loading" message="Retrieving usage metadata..."></c-happy-soup-status-panel>
+        </template>
+
+        <template lwc:elseif={errorMessage}>
+            <c-happy-soup-status-panel state="error" title="Usage Request Failed" message={errorMessage}></c-happy-soup-status-panel>
+        </template>
+
+        <template lwc:elseif={hasResult}>
+            <lightning-card title="Dependency Results (Phase 2 shell)">
+                <div class="slds-p-around_medium">
+                    <p>{usageResultMessage}</p>
+                    <template lwc:if={hasNodes}>
+                        <p class="slds-m-top_small">Returned node count: {nodeCount}</p>
+                    </template>
+                    <template lwc:else>
+                        <c-happy-soup-status-panel
+                            state="empty"
+                            title="No Dependency Nodes Yet"
+                            message="Next phase: implement metadata tree + table rendering for usage results."
+                        ></c-happy-soup-status-panel>
+                    </template>
+                </div>
+            </lightning-card>
+        </template>
+
+        <template lwc:else>
+            <c-happy-soup-status-panel
+                state="empty"
+                title="Usage Feature Started"
+                message="Select a metadata type and name to test the Phase 2 usage service shell."
+            ></c-happy-soup-status-panel>
+        </template>
+    </div>
+</template>
